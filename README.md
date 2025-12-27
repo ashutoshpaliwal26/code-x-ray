@@ -51,20 +51,23 @@ We designed Code X-Ray to feel like a native part of your toolchain. It’s full
 Get a complete map of your project in 3 lines of code.
 
 TypeScript
-
+```
 import { scanProject } from 'code-x-ray';
-
-// 🚀 Fire up the engine (scans recursively)
+```
+## 🚀 Fire up the engine (scans recursively)
+```
 console.time("✨ Magic Time");
 const context = scanProject("./src");
 console.timeEnd("✨ Magic Time");
 
 console.log(`\n📦 Scanned ${context.files_scanned} files in ${context.duration_ms}ms`);
-2. Powerful Filtering
+```
+
+### 2. Powerful Filtering
 Don't just scan—understand. Filter the raw AST data to find exactly what you need.
 
 TypeScript
-
+```
 // Example: Find all 'TODO' comments or specific function definitions
 const context = scanProject("./src");
 
@@ -79,13 +82,14 @@ console.table(functions.map(fn => ({
   Location: `L${fn.start.row}:${fn.start.column}`,
   Signature: fn.signature || '(unknown)'
 })));
-3. The "Context" Payload
+```
+### 3. The "Context" Payload
 The engine returns a clean, highly-structured JSON object optimized for LLM Context Windows (GPT-4, Claude, Llama 3).
 
 <details> <summary><b>👀 Click to view sample JSON Output</b></summary>
 
 JSON
-
+```
 {
   "root_dir": "./src",
   "stats": {
@@ -112,4 +116,5 @@ JSON
     }
   ]
 }
+```
 </details>
