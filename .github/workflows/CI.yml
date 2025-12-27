@@ -84,10 +84,17 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      # FIX: Explicitly download and merge artifacts
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
           path: artifacts
+          pattern: bindings-*
+          merge-multiple: true
+
+      # Debug: Verify the files exist before running the command
+      - name: List Artifacts
+        run: ls -R artifacts
 
       - name: Move Artifacts
         run: npm run artifacts
