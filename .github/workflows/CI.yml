@@ -65,20 +65,6 @@ jobs:
         if: ${{ !matrix.settings.docker }}
         run: ${{ matrix.settings.build }}
 
-      # Docker Build (For Linux compatibility)
-      - name: Build (Docker)
-        if: ${{ matrix.settings.docker }}
-        run: |
-          docker run --rm -v $(pwd):/build -w /build ${{ matrix.settings.docker }} \
-          npm run build -- --target ${{ matrix.settings.target }}
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4 # Fixed: v6 -> v4
-        with:
-          name: bindings-${{ matrix.settings.target }}
-          path: code-x-ray.*.node
-          if-no-files-found: error
-
   publish:
     name: Publish
     runs-on: ubuntu-latest
