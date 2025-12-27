@@ -1,0 +1,40 @@
+
+[package]
+authors = ["AshutoshPaliwal ashutoshpaliwal26@gmail.com"]
+edition = "2021"
+name = "code_x_ray"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"] # Compiles to a shared library (.node), not an executable
+
+[dependencies]
+streaming-iterator = "0.1"
+# 1. The Bridge (Node.js <-> Rust)
+napi = "3.0.0"
+napi-derive = "3.0.0"
+
+# 2. Parallelism (The engine that uses all 12 of your cores)
+rayon="1.10"
+
+# 3. File System (Fast walking that respects .gitignore)
+ignore = "0.4"
+walkdir = "2.5"
+
+# 4. Serialization (Rust Structs -> JSON)
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0" # Clean error handling
+
+# 5. The Parser Brain
+tree-sitter = "0.24"
+# We compile these grammars INTO our binary. No external deps needed.
+tree-sitter-typescript = "0.23"
+tree-sitter-javascript = "0.23"
+tree-sitter-python = "0.23"
+tree-sitter-rust = "0.23"
+tree-sitter-go = "0.23"
+
+[build-dependencies]
+napi-build = "2.0"
+cc = "1.2" # Required to compile the C code inside Tree-sitter
