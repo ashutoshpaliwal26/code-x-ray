@@ -13,7 +13,7 @@ on:
     branches:
       - main
     tags:
-      - 'v*'  # Fix: Trigger on tags starting with 'v' (e.g. v1.0.0)
+      - 'v*'
   pull_request:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           - host: windows-latest
             build: npm run build
             target: x86_64-pc-windows-msvc
-          # macOS (Apple Silicon - M1/M2)
+          # macOS (Apple Silicon)
           - host: macos-latest
             build: npm run build -- --target aarch64-apple-darwin
             target: aarch64-apple-darwin
@@ -36,20 +36,19 @@ jobs:
           - host: macos-latest
             build: npm run build -- --target x86_64-apple-darwin
             target: x86_64-apple-darwin
-          # Linux (Standard)
+          # Linux (Standard - No Docker)
           - host: ubuntu-latest
             build: npm run build -- --target x86_64-unknown-linux-gnu
-            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
             target: x86_64-unknown-linux-gnu
 
     steps:
-      - uses: actions/checkout@v4  # Fixed: v6 -> v4
-      
+      - uses: actions/checkout@v4
+
       - name: Setup Node
-        uses: actions/setup-node@v4 # Fixed: v6 -> v4
+        uses: actions/setup-node@v4
         with:
-          node-version: 22          # Fixed: 24 -> 22
-          cache: 'npm'              # Fixed: yarn -> npm
+          node-version: 22
+          cache: 'npm'
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -60,10 +59,16 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # Standard Build
       - name: Build
-        if: ${{ !matrix.settings.docker }}
         run: ${{ matrix.settings.build }}
+
+      # UPLOAD STEP: Critical for the next job
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bindings-${{ matrix.settings.target }}
+          path: code-x-ray.*.node
+          if-no-files-found: error
 
   publish:
     name: Publish
@@ -84,7 +89,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # FIX: Explicitly download and merge artifacts
+      # Force creation of the directory so 'ls' doesn't crash
+      - name: Create Artifacts Folder
+        run: mkdir -p artifacts
+
+      # DOWNLOAD STEP: Explicitly fetch the files we just uploaded
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -92,8 +101,7 @@ jobs:
           pattern: bindings-*
           merge-multiple: true
 
-      # Debug: Verify the files exist before running the command
-      - name: List Artifacts
+      - name: List Artifacts (Debug)
         run: ls -R artifacts
 
       - name: Move Artifacts
