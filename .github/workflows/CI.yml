@@ -89,6 +89,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      # -------------------------------------------------------
+      # FIX: Create the destination folders first!
+      # -------------------------------------------------------
+      - name: Create NPM Directories
+        run: npx napi create-npm-dirs
+
+      # Force creation of the download folder
+        
+
       # Force creation of the directory so 'ls' doesn't crash
       - name: Create Artifacts Folder
         run: mkdir -p artifacts
