@@ -1,11 +1,11 @@
 {
-  "name": "code-x-ray",
+  "name": "file-context-tree",
   "version": "1.0.0",
-  "description": "High-performance AST scanner for Node.js",
+  "description": "High-performance file context generator for Node.js",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ashutoshpaliwal26/code-x-ray.git"
+    "url": "https://github.com/ashutoshpaliwal26/file-context-tree.git"
   },
   "license": "MIT",
   "browser": "browser.js",
@@ -24,7 +24,7 @@
     "browser.js"
   ],
   "napi": {
-    "binaryName": "code-x-ray",
+    "binaryName": "file-context-tree",
     "targets": [
       "x86_64-unknown-linux-gnu",
       "x86_64-pc-windows-msvc",
@@ -39,10 +39,10 @@
     }
   },
   "optionalDependencies": {
-    "code-x-ray-win32-x64-msvc": "1.0.0",
-    "code-x-ray-darwin-x64": "1.0.0",
-    "code-x-ray-linux-x64-gnu": "1.0.0",
-    "code-x-ray-darwin-arm64": "1.0.0"
+    "file-context-tree-win32-x64-msvc": "1.0.0",
+    "file-context-tree-darwin-x64": "1.0.0",
+    "file-context-tree-linux-x64-gnu": "1.0.0",
+    "file-context-tree-darwin-arm64": "1.0.0"
   },
   "engines": {
     "node": ">= 10.16.0 < 11 || >= 11.8.0 < 12 || >= 12.0.0"

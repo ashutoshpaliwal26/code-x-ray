@@ -1,13 +1,13 @@
 <div align="center">
 
-# ⚡️ C O D E - X - R A Y
+# ⚡️ F I L E - C O N T E X T - T R E E
 
 **The High-Performance AST Scanner for the Modern Web**
 
-[![CI Status](https://img.shields.io/github/actions/workflow/status/YOUR_USERNAME/code-x-ray/CI.yml?style=for-the-badge&logo=github&labelColor=18181b&color=22c55e)](https://github.com/YOUR_USERNAME/code-x-ray/actions)
-[![NPM Version](https://img.shields.io/npm/v/code-x-ray?style=for-the-badge&logo=npm&labelColor=18181b&color=cb3030)](https://www.npmjs.com/package/code-x-ray)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/YOUR_USERNAME/file-context-tree/CI.yml?style=for-the-badge&logo=github&labelColor=18181b&color=22c55e)](https://github.com/YOUR_USERNAME/file-context-tree/actions)
+[![NPM Version](https://img.shields.io/npm/v/file-context-tree?style=for-the-badge&logo=npm&labelColor=18181b&color=cb3030)](https://www.npmjs.com/package/file-context-tree)
 [![Built With Rust](https://img.shields.io/badge/Powered_By-Rust-orange?style=for-the-badge&logo=rust&labelColor=18181b&color=ef4444)](https://www.rust-lang.org/)
-[![License](https://img.shields.io/npm/l/code-x-ray?style=for-the-badge&labelColor=18181b&color=3b82f6)](LICENSE)
+[![License](https://img.shields.io/npm/l/file-context-tree?style=for-the-badge&labelColor=18181b&color=3b82f6)](LICENSE)
 
 <br />
 
@@ -15,7 +15,7 @@
 <br />
 *Scan 10,000 files in seconds. Extract symbols instantly. Zero overhead.*
 
-[Report Bug](https://github.com/YOUR_USERNAME/code-x-ray/issues) · [Request Feature](https://github.com/YOUR_USERNAME/code-x-ray/issues)
+[Report Bug](https://github.com/YOUR_USERNAME/file-context-tree/issues) · [Request Feature](https://github.com/YOUR_USERNAME/file-context-tree/issues)
 
 </div>
 
@@ -41,7 +41,7 @@ By bridging Node.js with a compiled Rust binary, we bypass the event loop entire
 Add it to your project with a single command. It detects your OS (Windows/Linux/Mac) and downloads the correct optimized binary automatically.
 
 ```bash
-npm install code-x-ray
+npm install file-context-tree
 
 ```
 💻 Developer Experience
@@ -52,7 +52,7 @@ Get a complete map of your project in 3 lines of code.
 
 TypeScript
 ```
-import { scanProject } from 'code-x-ray';
+import { scanProject } from 'file-context-tree';
 ```
 ## 🚀 Fire up the engine (scans recursively)
 ```

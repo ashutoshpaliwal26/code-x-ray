@@ -1,7 +1,7 @@
 name: CI
 env:
   DEBUG: napi:*
-  APP_NAME: code-x-ray
+  APP_NAME: file-context-tree
   MACOSX_DEPLOYMENT_TARGET: '10.13'
 
 permissions:
@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: code-x-ray.*.node
+          path: file-context-tree.*.node
           if-no-files-found: error
 
   publish:

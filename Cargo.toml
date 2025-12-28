@@ -18,7 +18,8 @@ napi-derive = "3.0.0"
 rayon="1.10"
 
 # 3. File System (Fast walking that respects .gitignore)
-ignore = "=0.4.24"
+ignore = "=0.4.23"
+globset = "=0.4.15"
 walkdir = "2.5"
 
 # 4. Serialization (Rust Structs -> JSON)
