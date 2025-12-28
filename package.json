@@ -38,6 +38,12 @@
       }
     }
   },
+  "optionalDependencies": {
+    "@ashutoshpaliwal26/code-x-ray-win32-x64-msvc": "1.0.0",
+    "@ashutoshpaliwal26/code-x-ray-darwin-x64": "1.0.0",
+    "@ashutoshpaliwal26/code-x-ray-linux-x64-gnu": "1.0.0",
+    "@ashutoshpaliwal26/code-x-ray-darwin-arm64": "1.0.0"
+  },
   "engines": {
     "node": ">= 10.16.0 < 11 || >= 11.8.0 < 12 || >= 12.0.0"
   },
