@@ -1,6 +1,6 @@
 {
   "name": "file-context-tree",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "High-performance file context generator for Node.js",
   "main": "index.js",
   "repository": {
@@ -39,10 +39,10 @@
     }
   },
   "optionalDependencies": {
-    "file-context-tree-win32-x64-msvc": "1.0.0",
-    "file-context-tree-darwin-x64": "1.0.0",
-    "file-context-tree-linux-x64-gnu": "1.0.0",
-    "file-context-tree-darwin-arm64": "1.0.0"
+    "file-context-tree-win32-x64-msvc": "1.0.1",
+    "file-context-tree-darwin-x64": "1.0.1",
+    "file-context-tree-linux-x64-gnu": "1.0.1",
+    "file-context-tree-darwin-arm64": "1.0.1"
   },
   "engines": {
     "node": ">= 10.16.0 < 11 || >= 11.8.0 < 12 || >= 12.0.0"
