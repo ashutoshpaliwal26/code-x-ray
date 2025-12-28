@@ -23,14 +23,22 @@
     "browser.js"
   ],
   "napi": {
-    "binaryName": "code-x-ray",
-    "targets": [
-      "x86_64-pc-windows-msvc",
-      "x86_64-apple-darwin",
-      "x86_64-unknown-linux-gnu",
-      "aarch64-unknown-linux-gnu",
-      "aarch64-apple-darwin"
-    ]
+    "name": "@ashutoshpaliwal26/code-x-ray",
+    "triples": {
+      "defaults": true,
+      "additional": [
+        "x86_64-unknown-linux-gnu",
+        "x86_64-pc-windows-msvc",
+        "x86_64-apple-darwin",
+        "aarch64-apple-darwin"
+      ]
+    },
+    "packageJson": { 
+      "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
   },
   "engines": {
     "node": ">= 10.16.0 < 11 || >= 11.8.0 < 12 || >= 12.0.0"
