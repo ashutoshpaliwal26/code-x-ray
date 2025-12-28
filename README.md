@@ -52,34 +52,35 @@ pnpm add file-context-tree
 ### Basic Example
 
 ```javascript
-const { generateContext } = require('file-context-tree');
+const { scanProject } = require('file-context-tree');
 
-// Generate context for a single file
-const context = generateContext('./src/index.js');
-console.log(context);
+// Scan the current directory
+console.time('Scan Time');
+const context = scanProject('./src');
+console.timeEnd('Scan Time');
+
+console.log(JSON.stringify(context, null, 2));
 ```
 
 ### TypeScript Example
 
 ```typescript
-import { generateContext } from 'file-context-tree';
+import { scanProject } from 'file-context-tree';
 
-const context = generateContext('./src/app.ts');
-console.log(JSON.stringify(context, null, 2));
+// The return type is automatically inferred
+const context = scanProject('./src/app.ts');
+
+if (context) {
+    console.log(`Scanned ${context.name} successfully!`);
+}
 ```
 
-### Scanning a Directory
+### Configuration
+
+You can currently scan any directory or file path. Future versions will support ignore patterns and deep configuration options.
 
 ```javascript
-const { generateContext } = require('file-context-tree');
-
-// Recursively scan a directory
-const projectContext = generateContext('./src', {
-  recursive: true,
-  extensions: ['.js', '.ts', '.jsx', '.tsx']
-});
-
-console.log(projectContext);
+const projectContext = scanProject('./src/components');
 ```
 
 ---
@@ -92,101 +93,40 @@ The `generateContext` function returns a structured JSON object representing the
 
 ```json
 {
-  "version": "1.0.0",
-  "timestamp": "2024-12-28T10:30:00Z",
-  "root": "./src",
-  "files": [
+  "name": "src",
+  "path": "/Users/dev/project/src",
+  "type": "directory",
+  "size": 4096,
+  "children": [
     {
-      "path": "./src/index.js",
+      "name": "utils",
+      "path": "/Users/dev/project/src/utils",
+      "type": "directory",
+      "children": [
+        {
+          "name": "logger.ts",
+          "path": "/Users/dev/project/src/utils/logger.ts",
+          "type": "file",
+          "size": 1024,
+          "metadata": {
+            "extension": ".ts",
+            "language": "typescript",
+            "createdAt": "2025-12-28T10:00:00.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "name": "index.js",
+      "path": "/Users/dev/project/src/index.js",
+      "type": "file",
       "size": 2048,
-      "language": "javascript",
-      "structure": {
-        "imports": [
-          {
-            "module": "express",
-            "type": "default",
-            "line": 1
-          },
-          {
-            "module": "./routes",
-            "type": "named",
-            "specifiers": ["userRoutes", "authRoutes"],
-            "line": 2
-          }
-        ],
-        "exports": [
-          {
-            "name": "app",
-            "type": "default",
-            "line": 45
-          }
-        ],
-        "functions": [
-          {
-            "name": "initializeServer",
-            "type": "function",
-            "async": true,
-            "parameters": ["port", "config"],
-            "lineStart": 10,
-            "lineEnd": 25,
-            "complexity": 3
-          },
-          {
-            "name": "handleError",
-            "type": "arrow",
-            "async": false,
-            "parameters": ["error", "req", "res"],
-            "lineStart": 27,
-            "lineEnd": 32,
-            "complexity": 2
-          }
-        ],
-        "classes": [
-          {
-            "name": "DatabaseConnection",
-            "extends": "EventEmitter",
-            "lineStart": 34,
-            "lineEnd": 43,
-            "methods": [
-              {
-                "name": "connect",
-                "async": true,
-                "parameters": [],
-                "line": 36
-              },
-              {
-                "name": "disconnect",
-                "async": true,
-                "parameters": [],
-                "line": 40
-              }
-            ],
-            "properties": ["connectionString", "isConnected"]
-          }
-        ],
-        "variables": [
-          {
-            "name": "PORT",
-            "type": "const",
-            "value": "3000",
-            "line": 5
-          }
-        ]
-      },
       "metadata": {
-        "linesOfCode": 45,
-        "hasTests": false,
-        "lastModified": "2024-12-28T09:15:00Z"
+        "extension": ".js",
+        "language": "javascript"
       }
     }
-  ],
-  "statistics": {
-    "totalFiles": 1,
-    "totalLines": 45,
-    "totalFunctions": 2,
-    "totalClasses": 1,
-    "scanDuration": "12ms"
-  }
+  ]
 }
 ```
 
@@ -194,23 +134,12 @@ The `generateContext` function returns a structured JSON object representing the
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `version` | `string` | Schema version of the response payload |
-| `timestamp` | `string` | ISO 8601 timestamp when the context was generated |
-| `root` | `string` | Root directory or file path that was scanned |
-| `files` | `array` | Array of file objects containing structural information |
-| `files[].path` | `string` | Relative path to the file |
-| `files[].size` | `number` | File size in bytes |
-| `files[].language` | `string` | Detected programming language |
-| `files[].structure` | `object` | Parsed AST structure containing imports, exports, functions, classes, and variables |
-| `files[].structure.imports` | `array` | List of import statements with module names and types |
-| `files[].structure.exports` | `array` | List of export statements |
-| `files[].structure.functions` | `array` | Extracted function definitions with parameters, line numbers, and cyclomatic complexity |
-| `files[].structure.classes` | `array` | Class definitions with methods, properties, and inheritance information |
-| `files[].structure.variables` | `array` | Top-level variable declarations |
-| `files[].metadata` | `object` | Additional file metadata |
-| `statistics` | `object` | Aggregate statistics for the entire scan |
-| `statistics.scanDuration` | `string` | Time taken to complete the scan |
-
+| `name` | `string` | The name of the file or directory. |
+| `path` | `string` | The absolute path to the resource. |
+| `type` | `string` | Either `"file"` or `"directory"`. |
+| `size` | `number` | Size in bytes. |
+| `children` | `array` | (Directories only) Array of child nodes. |
+| `metadata` | `object` | (Files only) Additional details like extension and dates. |
 ---
 
 ## Performance
