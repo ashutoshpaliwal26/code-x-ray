@@ -118,8 +118,14 @@ jobs:
 
       - name: Publish to NPM
         run: |
+          # 1. Force all publishes to be public by default
+          npm config set access public
+          
+          # 2. Setup provenance
           npm config set provenance true
-          npm publish --access public
+          
+          # 3. Publish
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
