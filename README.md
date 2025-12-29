@@ -173,8 +173,8 @@ We welcome contributions! Whether it's bug reports, feature requests, or pull re
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/ashutoshpaliwal26/code-x-ray.git
-   cd code-x-ray
+   git clone https://github.com/ashutoshpaliwal26/file-context-tree.git
+   cd file-context-tree
    ```
 
 2. **Install dependencies**
@@ -199,7 +199,7 @@ We welcome contributions! Whether it's bug reports, feature requests, or pull re
 ### Project Structure
 
 ```
-code-x-ray/
+file-context-tree/
 ├── src/           # Rust source code
 ├── index.js       # Node.js entry point
 ├── index.d.ts     # TypeScript definitions
@@ -232,6 +232,6 @@ MIT © [Ashutosh Paliwal](https://github.com/ashutoshpaliwal26)
 
 **Made with ❤️ and Rust**
 
-[Report Bug](https://github.com/ashutoshpaliwal26/code-x-ray/issues) • [Request Feature](https://github.com/ashutoshpaliwal26/code-x-ray/issues)
+[Report Bug](https://github.com/ashutoshpaliwal26/file-context-tree/issues) • [Request Feature](https://github.com/ashutoshpaliwal26/file-context-tree/issues)
 
 </div>
