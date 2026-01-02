@@ -1,6 +1,6 @@
 {
   "name": "file-context-tree",
-  "version": "1.0.4",
+  "version": "1.2.0",
   "description": "High-performance file context generator for Node.js",
   "main": "index.js",
   "repository": {
