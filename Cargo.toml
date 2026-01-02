@@ -3,7 +3,7 @@
 authors = ["AshutoshPaliwal ashutoshpaliwal26@gmail.com"]
 edition = "2021"
 name = "code_x_ray"
-version = "0.1.0"
+version = "0.2.0"
 
 [lib]
 crate-type = ["cdylib"] # Compiles to a shared library (.node), not an executable

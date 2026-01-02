@@ -68,11 +68,22 @@ console.log(JSON.stringify(context, null, 2));
 import { scanProject } from 'file-context-tree';
 
 // The return type is automatically inferred
-const context = scanProject('./src/app.ts');
+const context = scanProject('./src');
 
 if (context) {
     console.log(`Scanned ${context.name} successfully!`);
 }
+```
+
+```typescript
+
+const singleFileAst = ast_of_file("./src/app.ts");
+
+if(singleFileAst) {
+    console.log("Single file AST generated successfully!");
+    console.log(JSON.stringify(singleFileAst, null, 1));
+}
+
 ```
 
 ### Configuration
