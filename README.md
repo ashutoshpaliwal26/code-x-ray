@@ -75,7 +75,11 @@ if (context) {
 }
 ```
 
+### For single file AST Generator.
+
 ```typescript
+
+import {ast_of_file} from "file-context-tree";
 
 const singleFileAst = ast_of_file("./src/app.ts");
 

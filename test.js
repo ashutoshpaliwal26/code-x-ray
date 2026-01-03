@@ -1,7 +1,10 @@
-const { scanProject } = require('./index.js');
+const { scanProject, astOfFile } = require('./index.js');
 
 console.log("🚀 Scanning current directory...");
 const result = scanProject("./");
+
+const singleFileAst = astOfFile("./src/lib.rs");
+console.dir(singleFileAst, { depth: null , colors : true});
 
 // Print summary
 console.log(`✅ Scanned ${result.filesScanned} files in ${result.durationMs.toFixed(2)}ms`);
